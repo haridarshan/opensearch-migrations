@@ -34,7 +34,7 @@
     },
     "require": {
         "php": "^7.4 || ^8.0",
-        "haridarshan/opensearch-adapter": "@dev"
+        "haridarshan/opensearch-adapter": "dev-master"
     },
     "require-dev": {
         "illuminate/database": "^8.0|^9.0|^10.0",
