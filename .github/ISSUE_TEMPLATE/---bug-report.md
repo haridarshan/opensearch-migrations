@@ -8,16 +8,16 @@ assignees: ''
 ---
 
 <!-- 
-- Please do not report a bug if you are using PHP, Elasticsearch or Laravel versions, which are not compatible. Check https://github.com/babenkoivan/elastic-migrations#compatibility for more details.
+- Please do not report a bug if you are using PHP, OpenSearch or Laravel versions, which are not compatible. Check https://github.com/babenkoivan/elastic-migrations#compatibility for more details.
 - Please fill in this template in order to help us to understand and reproduce the issue.
 - Please do not post code as a screenshot, post it as text instead (using proper Markdown).
 -->
 
-| Software        | Version
-| ------------- | ---------------
-| PHP                | x.y.z
-| Elasticsearch | x.y.z
-| Laravel           | x.y.z
+| Software   | Version
+|------------| ---------------
+| PHP        | x.y.z
+| OpenSearch | x.y.z
+| Laravel    | x.y.z
 
 **Describe the bug**
 <!-- A clear and concise description of what the bug is. -->

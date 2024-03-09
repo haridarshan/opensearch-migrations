@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Elastic\Migrations\Facades;
+namespace OpenSearch\Migrations\Facades;
 
-use Elastic\Migrations\IndexManagerInterface;
+use OpenSearch\Migrations\IndexManagerInterface;
 use Illuminate\Support\Facades\Facade;
 
 /**
