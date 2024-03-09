@@ -57,5 +57,7 @@
                 "OpenSearch\\Migrations\\ServiceProvider"
             ]
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
