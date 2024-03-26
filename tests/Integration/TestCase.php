@@ -1,14 +1,13 @@
 <?php declare(strict_types=1);
 
-namespace Elastic\Migrations\Tests\Integration;
+namespace OpenSearch\Migrations\Tests\Integration;
 
-use Elastic\Client\ServiceProvider as ClientServiceProvider;
-use Elastic\Elasticsearch\Client;
-use Elastic\Elasticsearch\ClientBuilder;
-use Elastic\Migrations\ServiceProvider as MigrationsServiceProvider;
+use OpenSearch\Laravel\Client\ServiceProvider as ClientServiceProvider;
+use OpenSearch\Client;
+use OpenSearch\ClientBuilder;
+use OpenSearch\Migrations\ServiceProvider as MigrationsServiceProvider;
 use Illuminate\Config\Repository;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
-use Psr\Http\Client\ClientInterface;
 
 class TestCase extends TestbenchTestCase
 {
@@ -27,14 +26,11 @@ class TestCase extends TestbenchTestCase
         parent::getEnvironmentSetUp($app);
 
         $this->config = $app['config'];
-        $this->config->set('elastic.migrations.database.table', 'test_elastic_migrations');
-        $this->config->set('elastic.migrations.storage.default_path', realpath(__DIR__ . '/../migrations'));
+        $this->config->set('opensearch.migrations.database.table', 'test_elastic_migrations');
+        $this->config->set('opensearch.migrations.storage.default_path', realpath(__DIR__ . '/../migrations'));
 
         $app->singleton(Client::class, function () {
-            $httpClientMock = $this->createMock(ClientInterface::class);
-
             return ClientBuilder::create()
-                ->setHttpClient($httpClientMock)
                 ->build();
         });
     }
