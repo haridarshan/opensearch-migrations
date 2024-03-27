@@ -24,7 +24,7 @@ final class RefreshCommandTest extends TestCase
         $this->migrator = $this->createMock(Migrator::class);
         $this->app->instance(Migrator::class, $this->migrator);
 
-        $this->command = new RefreshCommand();
+        $this->command = new RefreshCommand($this->migrator);
         $this->command->setLaravel($this->app);
     }
 

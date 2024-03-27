@@ -24,7 +24,7 @@ final class ResetCommandTest extends TestCase
         $this->migrator = $this->createMock(Migrator::class);
         $this->app->instance(Migrator::class, $this->migrator);
 
-        $this->command = new ResetCommand();
+        $this->command = new ResetCommand($this->migrator);
         $this->command->setLaravel($this->app);
     }
 

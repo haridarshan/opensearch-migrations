@@ -24,7 +24,7 @@ final class StatusCommandTest extends TestCase
         $this->migrator = $this->createMock(Migrator::class);
         $this->app->instance(Migrator::class, $this->migrator);
 
-        $this->command = new StatusCommand();
+        $this->command = new StatusCommand($this->migrator);
         $this->command->setLaravel($this->app);
     }
 

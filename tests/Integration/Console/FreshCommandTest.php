@@ -34,7 +34,7 @@ final class FreshCommandTest extends TestCase
         $this->indexManager = $this->createMock(IndexManagerInterface::class);
         $this->app->instance(IndexManagerInterface::class, $this->indexManager);
 
-        $this->command = new FreshCommand();
+        $this->command = new FreshCommand($this->migrator, $this->migrationRepository, $this->indexManager);
         $this->command->setLaravel($this->app);
     }
 
