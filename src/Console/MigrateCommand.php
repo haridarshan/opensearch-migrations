@@ -21,11 +21,26 @@ class MigrateCommand extends Command
      */
     protected $description = 'Run the migrations.';
 
-    public function handle(Migrator $migrator): int
-    {
-        $migrator->setOutput($this->output);
+    /**
+     * @var Migrator
+     */
+    protected Migrator $migrator;
 
-        if (!$this->confirmToProceed() || !$migrator->isReady()) {
+    /**
+     * @param Migrator $migrator
+     */
+    public function __construct(Migrator $migrator)
+    {
+        parent::__construct();
+
+        $this->migrator = $migrator;
+    }
+
+    public function handle(): int
+    {
+        $this->migrator->setOutput($this->output);
+
+        if (!$this->confirmToProceed() || !$this->migrator->isReady()) {
             return 1;
         }
 
@@ -33,9 +48,9 @@ class MigrateCommand extends Command
         $name = $this->argument('name');
 
         if (isset($name)) {
-            $migrator->migrateOne(trim($name));
+            $this->migrator->migrateOne(trim($name));
         } else {
-            $migrator->migrateAll();
+            $this->migrator->migrateAll();
         }
 
         return 0;

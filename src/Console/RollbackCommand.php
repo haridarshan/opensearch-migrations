@@ -21,11 +21,26 @@ class RollbackCommand extends Command
      */
     protected $description = 'Rollback migrations.';
 
-    public function handle(Migrator $migrator): int
-    {
-        $migrator->setOutput($this->output);
+    /**
+     * @var Migrator
+     */
+    protected Migrator $migrator;
 
-        if (!$this->confirmToProceed() || !$migrator->isReady()) {
+    /**
+     * @param Migrator $migrator
+     */
+    public function __construct(Migrator $migrator)
+    {
+        parent::__construct();
+
+        $this->migrator = $migrator;
+    }
+
+    public function handle(): int
+    {
+        $this->migrator->setOutput($this->output);
+
+        if (!$this->confirmToProceed() || !$this->migrator->isReady()) {
             return 1;
         }
 
@@ -33,9 +48,9 @@ class RollbackCommand extends Command
         $name = $this->argument('name');
 
         if (isset($name)) {
-            $migrator->rollbackOne(trim($name));
+            $this->migrator->rollbackOne(trim($name));
         } else {
-            $migrator->rollbackLastBatch();
+            $this->migrator->rollbackLastBatch();
         }
 
         return 0;

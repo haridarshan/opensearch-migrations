@@ -22,20 +22,48 @@ class FreshCommand extends Command
      */
     protected $description = 'Drop all indices and re-run all migrations.';
 
-    public function handle(
+    /**
+     * @var Migrator
+     */
+    protected Migrator $migrator;
+
+    /**
+     * @var MigrationRepository
+     */
+    protected MigrationRepository $migrationRepository;
+
+    /**
+     * @var IndexManagerInterface
+     */
+    protected IndexManagerInterface $indexManager;
+
+    /**
+     * @param Migrator $migrator
+     * @param MigrationRepository $migrationRepository
+     * @param IndexManagerInterface $indexManager
+     */
+    public function __construct(
         Migrator $migrator,
         MigrationRepository $migrationRepository,
         IndexManagerInterface $indexManager
-    ): int {
-        $migrator->setOutput($this->output);
+    ) {
+        parent::__construct();
 
-        if (!$this->confirmToProceed() || !$migrator->isReady()) {
+        $this->migrator = $migrator;
+        $this->migrationRepository = $migrationRepository;
+        $this->indexManager = $indexManager;
+    }
+
+    public function handle(): int {
+        $this->migrator->setOutput($this->output);
+
+        if (!$this->confirmToProceed() || !$this->migrator->isReady()) {
             return 1;
         }
 
-        $indexManager->drop('*');
-        $migrationRepository->purge();
-        $migrator->migrateAll();
+        $this->indexManager->drop('*');
+        $this->migrationRepository->purge();
+        $this->migrator->migrateAll();
 
         return 0;
     }
