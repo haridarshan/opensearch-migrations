@@ -3,10 +3,10 @@
 namespace OpenSearch\Migrations\Console;
 
 use Carbon\Carbon;
-use OpenSearch\Migrations\Filesystem\MigrationStorage;
 use Illuminate\Console\Command;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
+use OpenSearch\Migrations\Filesystem\MigrationStorage;
 
 class MakeCommand extends Command
 {
@@ -19,13 +19,9 @@ class MakeCommand extends Command
      * @var string
      */
     protected $description = 'Create a new migration file.';
-    /**
-     * @var Filesystem
-     */
+
     private Filesystem $filesystem;
-    /**
-     * @var MigrationStorage
-     */
+
     private MigrationStorage $migrationStorage;
 
     public function __construct(Filesystem $filesystem, MigrationStorage $migrationStorage)

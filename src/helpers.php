@@ -2,12 +2,12 @@
 
 namespace OpenSearch\Migrations;
 
-function prefix_index_name(string $indexName): string
+function prefixIndexName(string $indexName): string
 {
     return config('opensearch.migrations.prefixes.index') . $indexName;
 }
 
-function prefix_alias_name(string $aliasName): string
+function prefixAliasName(string $aliasName): string
 {
     return config('opensearch.migrations.prefixes.alias') . $aliasName;
 }

@@ -7,8 +7,8 @@ use OpenSearch\Adapter\Indices\IndexManager;
 use OpenSearch\Adapter\Indices\Mapping;
 use OpenSearch\Adapter\Indices\Settings;
 use OpenSearch\Migrations\IndexManagerInterface;
-use function OpenSearch\Migrations\prefix_alias_name;
-use function OpenSearch\Migrations\prefix_index_name;
+use function OpenSearch\Migrations\prefixAliasName;
+use function OpenSearch\Migrations\prefixIndexName;
 
 class IndexManagerAdapter implements IndexManagerInterface
 {
@@ -21,7 +21,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function create(string $indexName, ?callable $modifier = null): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         if (isset($modifier)) {
             $mapping = new Mapping();
@@ -41,7 +41,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function createRaw(string $indexName, ?array $mapping = null, ?array $settings = null): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $this->indexManager->createRaw($prefixedIndexName, $mapping, $settings);
 
@@ -50,7 +50,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function createIfNotExists(string $indexName, ?callable $modifier = null): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         if (!$this->indexManager->exists($prefixedIndexName)) {
             $this->create($indexName, $modifier);
@@ -64,7 +64,7 @@ class IndexManagerAdapter implements IndexManagerInterface
         ?array $mapping = null,
         ?array $settings = null
     ): IndexManagerInterface {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         if (!$this->indexManager->exists($prefixedIndexName)) {
             $this->createRaw($indexName, $mapping, $settings);
@@ -75,7 +75,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function putMapping(string $indexName, callable $modifier): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $mapping = new Mapping();
         $modifier($mapping);
@@ -87,7 +87,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function putMappingRaw(string $indexName, array $mapping): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $this->indexManager->putMappingRaw($prefixedIndexName, $mapping);
 
@@ -96,7 +96,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function putSettings(string $indexName, callable $modifier): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $settings = new Settings();
         $modifier($settings);
@@ -108,7 +108,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function putSettingsRaw(string $indexName, array $settings): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $this->indexManager->putSettingsRaw($prefixedIndexName, $settings);
 
@@ -117,7 +117,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function pushSettings(string $indexName, callable $modifier): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $this->indexManager->close($prefixedIndexName);
         $this->putSettings($indexName, $modifier);
@@ -128,7 +128,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function pushSettingsRaw(string $indexName, array $settings): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $this->indexManager->close($prefixedIndexName);
         $this->putSettingsRaw($indexName, $settings);
@@ -139,7 +139,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function drop(string $indexName): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         $this->indexManager->drop($prefixedIndexName);
 
@@ -148,7 +148,7 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function dropIfExists(string $indexName): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
+        $prefixedIndexName = prefixIndexName($indexName);
 
         if ($this->indexManager->exists($prefixedIndexName)) {
             $this->drop($indexName);
@@ -159,8 +159,8 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function putAlias(string $indexName, string $aliasName, array $settings = null): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
-        $prefixedAliasName = prefix_alias_name($aliasName);
+        $prefixedIndexName = prefixIndexName($indexName);
+        $prefixedAliasName = prefixAliasName($aliasName);
 
         $this->indexManager->putAliasRaw($prefixedIndexName, $prefixedAliasName, $settings);
 
@@ -169,8 +169,8 @@ class IndexManagerAdapter implements IndexManagerInterface
 
     public function deleteAlias(string $indexName, string $aliasName): IndexManagerInterface
     {
-        $prefixedIndexName = prefix_index_name($indexName);
-        $prefixedAliasName = prefix_alias_name($aliasName);
+        $prefixedIndexName = prefixIndexName($indexName);
+        $prefixedAliasName = prefixAliasName($aliasName);
 
         $this->indexManager->deleteAlias($prefixedIndexName, $prefixedAliasName);
 

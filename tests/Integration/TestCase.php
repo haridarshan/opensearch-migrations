@@ -2,11 +2,11 @@
 
 namespace OpenSearch\Migrations\Tests\Integration;
 
-use OpenSearch\Laravel\Client\ServiceProvider as ClientServiceProvider;
+use Illuminate\Config\Repository;
 use OpenSearch\Client;
 use OpenSearch\ClientBuilder;
+use OpenSearch\Laravel\Client\ServiceProvider as ClientServiceProvider;
 use OpenSearch\Migrations\ServiceProvider as MigrationsServiceProvider;
-use Illuminate\Config\Repository;
 use Orchestra\Testbench\TestCase as TestbenchTestCase;
 
 class TestCase extends TestbenchTestCase
@@ -29,7 +29,7 @@ class TestCase extends TestbenchTestCase
         $this->config->set('opensearch.migrations.database.table', 'test_elastic_migrations');
         $this->config->set('opensearch.migrations.storage.default_path', realpath(__DIR__ . '/../migrations'));
 
-        $app->singleton(Client::class, function () {
+        $app->singleton(Client::class, static function () {
             return ClientBuilder::create()
                 ->build();
         });

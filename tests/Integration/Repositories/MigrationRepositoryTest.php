@@ -2,11 +2,11 @@
 
 namespace OpenSearch\Migrations\Tests\Integration\Repositories;
 
-use OpenSearch\Migrations\Repositories\MigrationRepository;
-use OpenSearch\Migrations\Tests\Integration\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use OpenSearch\Migrations\Repositories\MigrationRepository;
+use OpenSearch\Migrations\Tests\Integration\TestCase;
 
 /**
  * @covers \OpenSearch\Migrations\Repositories\MigrationRepository

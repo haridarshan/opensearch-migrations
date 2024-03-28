@@ -2,6 +2,7 @@
 
 namespace OpenSearch\Migrations;
 
+use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 use OpenSearch\Migrations\Adapters\IndexManagerAdapter;
 use OpenSearch\Migrations\Console\FreshCommand;
 use OpenSearch\Migrations\Console\MakeCommand;
@@ -11,7 +12,6 @@ use OpenSearch\Migrations\Console\ResetCommand;
 use OpenSearch\Migrations\Console\RollbackCommand;
 use OpenSearch\Migrations\Console\StatusCommand;
 use OpenSearch\Migrations\Filesystem\MigrationStorage;
-use Illuminate\Support\ServiceProvider as AbstractServiceProvider;
 
 final class ServiceProvider extends AbstractServiceProvider
 {

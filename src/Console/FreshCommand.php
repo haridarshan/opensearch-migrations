@@ -2,11 +2,11 @@
 
 namespace OpenSearch\Migrations\Console;
 
+use Illuminate\Console\Command;
+use Illuminate\Console\ConfirmableTrait;
 use OpenSearch\Migrations\IndexManagerInterface;
 use OpenSearch\Migrations\Migrator;
 use OpenSearch\Migrations\Repositories\MigrationRepository;
-use Illuminate\Console\Command;
-use Illuminate\Console\ConfirmableTrait;
 
 class FreshCommand extends Command
 {
@@ -22,26 +22,12 @@ class FreshCommand extends Command
      */
     protected $description = 'Drop all indices and re-run all migrations.';
 
-    /**
-     * @var Migrator
-     */
     protected Migrator $migrator;
 
-    /**
-     * @var MigrationRepository
-     */
     protected MigrationRepository $migrationRepository;
 
-    /**
-     * @var IndexManagerInterface
-     */
     protected IndexManagerInterface $indexManager;
 
-    /**
-     * @param Migrator $migrator
-     * @param MigrationRepository $migrationRepository
-     * @param IndexManagerInterface $indexManager
-     */
     public function __construct(
         Migrator $migrator,
         MigrationRepository $migrationRepository,
@@ -54,7 +40,8 @@ class FreshCommand extends Command
         $this->indexManager = $indexManager;
     }
 
-    public function handle(): int {
+    public function handle(): int
+    {
         $this->migrator->setOutput($this->output);
 
         if (!$this->confirmToProceed() || !$this->migrator->isReady()) {

@@ -2,9 +2,9 @@
 
 namespace OpenSearch\Migrations\Console;
 
-use OpenSearch\Migrations\Migrator;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
+use OpenSearch\Migrations\Migrator;
 
 class MigrateCommand extends Command
 {
@@ -21,14 +21,8 @@ class MigrateCommand extends Command
      */
     protected $description = 'Run the migrations.';
 
-    /**
-     * @var Migrator
-     */
     protected Migrator $migrator;
 
-    /**
-     * @param Migrator $migrator
-     */
     public function __construct(Migrator $migrator)
     {
         parent::__construct();

@@ -2,8 +2,8 @@
 
 namespace OpenSearch\Migrations\Console;
 
-use OpenSearch\Migrations\Migrator;
 use Illuminate\Console\Command;
+use OpenSearch\Migrations\Migrator;
 
 class StatusCommand extends Command
 {
@@ -16,14 +16,8 @@ class StatusCommand extends Command
      */
     protected $description = 'Show the status of each migration.';
 
-    /**
-     * @var Migrator
-     */
     protected Migrator $migrator;
 
-    /**
-     * @param Migrator $migrator
-     */
     public function __construct(Migrator $migrator)
     {
         parent::__construct();

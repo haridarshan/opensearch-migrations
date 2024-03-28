@@ -2,13 +2,13 @@
 
 namespace OpenSearch\Migrations\Tests\Integration;
 
-use OpenSearch\Migrations\Facades\Index;
-use OpenSearch\Migrations\Filesystem\MigrationStorage;
-use OpenSearch\Migrations\Migrator;
 use Illuminate\Console\OutputStyle;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use OpenSearch\Migrations\Facades\Index;
+use OpenSearch\Migrations\Filesystem\MigrationStorage;
+use OpenSearch\Migrations\Migrator;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

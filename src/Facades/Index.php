@@ -2,8 +2,8 @@
 
 namespace OpenSearch\Migrations\Facades;
 
-use OpenSearch\Migrations\IndexManagerInterface;
 use Illuminate\Support\Facades\Facade;
+use OpenSearch\Migrations\IndexManagerInterface;
 
 /**
  * @method static self create(string $indexName, ?callable $modifier = null)

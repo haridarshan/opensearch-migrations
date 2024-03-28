@@ -2,12 +2,12 @@
 
 namespace OpenSearch\Migrations;
 
+use Illuminate\Console\OutputStyle;
+use Illuminate\Support\Collection;
 use OpenSearch\Migrations\Factories\MigrationFactory;
 use OpenSearch\Migrations\Filesystem\MigrationFile;
 use OpenSearch\Migrations\Filesystem\MigrationStorage;
 use OpenSearch\Migrations\Repositories\MigrationRepository;
-use Illuminate\Console\OutputStyle;
-use Illuminate\Support\Collection;
 
 class Migrator implements ReadinessInterface
 {
@@ -105,8 +105,8 @@ class Migrator implements ReadinessInterface
                     ? '<fg=green;options=bold>Ran</>' . ($lastBatch->contains($file->name()) ? ' <fg=gray>(last batch)</>' : '')
                     : '<fg=yellow;options=bold>Pending</>',
             ]
-        )->when($onlyPending, static fn (Collection $rows) => $rows->filter(
-            static fn (array $row) => strpos($row[1], 'Pending') !== false
+        )->when($onlyPending, static fn (Collection $rows) => $rows->filter( /** @phpstan-ignore-line */
+            static fn (array $row) => str_contains($row[1], 'Pending')
         )->values())->toArray();
 
         if ($rows !== []) {

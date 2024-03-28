@@ -3,9 +3,9 @@
 namespace OpenSearch\Migrations\Filesystem;
 
 use const DIRECTORY_SEPARATOR;
-use OpenSearch\Migrations\ReadinessInterface;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Collection;
+use OpenSearch\Migrations\ReadinessInterface;
 
 class MigrationStorage implements ReadinessInterface
 {

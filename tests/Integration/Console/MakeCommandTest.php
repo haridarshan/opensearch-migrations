@@ -2,10 +2,10 @@
 
 namespace OpenSearch\Migrations\Tests\Integration\Console;
 
+use Illuminate\Filesystem\Filesystem;
 use OpenSearch\Migrations\Console\MakeCommand;
 use OpenSearch\Migrations\Filesystem\MigrationStorage;
 use OpenSearch\Migrations\Tests\Integration\TestCase;
-use Illuminate\Filesystem\Filesystem;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\BufferedOutput;
 

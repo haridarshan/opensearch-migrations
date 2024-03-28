@@ -2,9 +2,9 @@
 
 namespace OpenSearch\Migrations\Factories;
 
+use Illuminate\Support\Str;
 use OpenSearch\Migrations\Filesystem\MigrationFile;
 use OpenSearch\Migrations\MigrationInterface;
-use Illuminate\Support\Str;
 
 class MigrationFactory
 {

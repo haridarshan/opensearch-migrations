@@ -2,9 +2,9 @@
 
 namespace OpenSearch\Migrations\Console;
 
-use OpenSearch\Migrations\Migrator;
 use Illuminate\Console\Command;
 use Illuminate\Console\ConfirmableTrait;
+use OpenSearch\Migrations\Migrator;
 
 class ResetCommand extends Command
 {
@@ -20,14 +20,8 @@ class ResetCommand extends Command
      */
     protected $description = 'Rollback all migrations.';
 
-    /**
-     * @var Migrator
-     */
     protected Migrator $migrator;
 
-    /**
-     * @param Migrator $migrator
-     */
     public function __construct(Migrator $migrator)
     {
         parent::__construct();
